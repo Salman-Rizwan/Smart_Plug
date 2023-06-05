@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Smart_Plug</string>
+    <string name="energy">Energy Consumption</string>
+    <string name="schedule">Schedule</string>
+</resources>

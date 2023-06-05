@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "442886484763",
+    "firebase_url": "https://adapto-5dadf-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "adapto-5dadf",
+    "storage_bucket": "adapto-5dadf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:442886484763:android:4d6007175fe6ce3de719be",
+        "android_client_info": {
+          "package_name": "lk.salman.smart_plug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "442886484763-006gk1d69v92il6jh7vn0an68sulvceo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUyMCFfUt9m9ZiuqivIdtUNYg-qBZjHL0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "442886484763-006gk1d69v92il6jh7vn0an68sulvceo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="lightgray">#DBE4FB</color>
+    <color name="lightgreen">#E2F2E1</color>
+    <color name="midgreen">#34A853</color>
+
+
+
+    <color name="red_card">#FF5C5C</color>
+    <color name="green_card">#34A853</color>
+    <color name="orange_card">#FFD79B</color>
+    <color name="purple_card">#5A405D</color>
+
+    <color name="red_round">#FF2424</color>
+    <color name="green_round">#38D19A</color>
+    <color name="orange_round">#FE9926</color>
+    <color name="purple_round">#463146</color>
+
+    <color name="purple_dark">#4E356B</color>
+    <color name="gray_dark">#808AA4</color>
+    <color name="dark_blue">#233149</color>
+    <color name="mid_blue">#3F4F6A</color>
+
+    <color name="appbg">#F3F3F3</color>
+
+    <color name="bg">#FFEEEE</color>
+    <color name="light_puple">#FAEDF6</color>
+    <color name="blue1">#2C7DA0</color>
+    <color name="blue2">#468FAF </color>
+    <color name="blue3">#61A5C2 </color>
+    <color name="blue4">#2A6F97</color>
+</resources>
