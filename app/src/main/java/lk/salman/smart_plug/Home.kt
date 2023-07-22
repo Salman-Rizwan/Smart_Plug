@@ -177,6 +177,7 @@ class Home : AppCompatActivity() {
     }
 
 
+
     //bottom sheet function
     private fun showBottomSheet() {
         val database = FirebaseDatabase.getInstance().getReference("HOUSES")
@@ -219,24 +220,22 @@ class Home : AppCompatActivity() {
                     val editButton = bottomSheetView.findViewById<Button>(R.id.edit_btn)
                     editButton.visibility = View.GONE
 
-                    showCreateScheduleDialog()
-
+                    // Schedule button
+                    val scheduleButton = bottomSheetView.findViewById<Button>(R.id.schedule_btn)
+                    scheduleButton.setOnClickListener {
+                        showCreateScheduleDialog() // Move the function call here
+                        bottomSheetDialog.dismiss()
+                    }
 
                 } else {
-                    // No schedule exists, do not show the bottom sheet
-                    // You can show a toast or handle this situation in any other way you prefer
-                    Toast.makeText(this@Home, "No schedule available", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@Home, "schedule available", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Handle onCancelled event, if needed
-                Toast.makeText(this@Home, "Database reference failed", Toast.LENGTH_LONG).show()
+
             }
         })
-
-
-
     }
 
 
@@ -410,6 +409,10 @@ class Home : AppCompatActivity() {
         dialog.setContentView(bottomSheetView)
         dialog.show()
     }
+
+
+
+
     //create if schedule available
     private fun showCreateScheduleDialog() {
         val database = FirebaseDatabase.getInstance().getReference("HOUSES")
@@ -422,12 +425,8 @@ class Home : AppCompatActivity() {
         val endDate = bottomSheetView.findViewById<ImageButton>(R.id.end_date)
         val startTime = bottomSheetView.findViewById<ImageButton>(R.id.start_time)
         val endTime = bottomSheetView.findViewById<ImageButton>(R.id.end_time)
-//        val startDateTextView = bottomSheetView.findViewById<TextView>(R.id.start_date_dis)
-//        val startTimeTextView = bottomSheetView.findViewById<TextView>(R.id.start_time_dis)
-//        val endDateTextView = bottomSheetView.findViewById<TextView>(R.id.end_date_dis)
-//        val endTimeTextView = bottomSheetView.findViewById<TextView>(R.id.end_time_dis)
         val scheduleButton = bottomSheetView.findViewById<Button>(R.id.schedule_btn)
-        val editButton = bottomSheetView.findViewById<Button>(R.id.edit_btn)
+
 
         // Make the date/time pickers clickable
         startDate.isEnabled = true
@@ -435,7 +434,6 @@ class Home : AppCompatActivity() {
         startTime.isEnabled = true
         endTime.isEnabled = true
 
-        scheduleButton.setOnClickListener {
             // Retrieve the selected values from the dialog TextViews
             val selectedStartYear = this.selectedStartYear
             val selectedStartMonth = this.selectedStartMonth
@@ -463,15 +461,9 @@ class Home : AppCompatActivity() {
             adaptor1Ref.updateChildren(scheduleData)
                 .addOnSuccessListener {
                     Toast.makeText(this@Home, "Schedule created successfully", Toast.LENGTH_SHORT).show()
-                    dialog.dismiss() // Close the bottom sheet dialog
                 }
                 .addOnFailureListener {
                     Toast.makeText(this@Home, "Failed to create schedule", Toast.LENGTH_SHORT).show()
                 }
         }
-        // Set the custom view for the dialog and show it
-        dialog.setContentView(bottomSheetView)
-        dialog.show()
-    }
-
 }
