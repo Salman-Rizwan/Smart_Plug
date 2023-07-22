@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "268849112025",
+    "firebase_url": "https://smart-plug-db-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "smart-plug-db",
+    "storage_bucket": "smart-plug-db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:268849112025:android:142a957d8ad25e9776efc8",
+        "android_client_info": {
+          "package_name": "lk.salman.smart_plug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "268849112025-sd3isqfg84feu8iu93dgvj1s0tbh2voo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0u17o7cc0VSLHCH-JEbS0s2vlB2EqcUc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "268849112025-sd3isqfg84feu8iu93dgvj1s0tbh2voo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

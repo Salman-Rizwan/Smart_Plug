@@ -58,7 +58,6 @@ class Home : AppCompatActivity() {
         //open bottom sheet
         val start1 = findViewById<CardView>(R.id.schedule)
         start1.setOnClickListener {
-            showCreateScheduleDialog()
             showBottomSheet()
         }
 
@@ -180,43 +179,64 @@ class Home : AppCompatActivity() {
 
     //bottom sheet function
     private fun showBottomSheet() {
-        bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet, null)
-        val bottomSheetDialog = BottomSheetDialog(this)
-        bottomSheetDialog.setContentView(bottomSheetView)
-        bottomSheetDialog.show()
+        val database = FirebaseDatabase.getInstance().getReference("HOUSES")
+        val adaptor1Ref = database.child("HOUSES_1").child("ADAPTORS").child("ADAPTOR_1").child("SCHEDULE")
 
-        //Date selection
-        val start_date = bottomSheetView.findViewById<ImageButton>(R.id.start_date)
-        start_date.setOnClickListener {
-            showDatePickerDialog(true)
-        }
+        adaptor1Ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // Schedule exists, show the bottom sheet
+                    bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet, null)
+                    val bottomSheetDialog = BottomSheetDialog(this@Home)
+                    bottomSheetDialog.setContentView(bottomSheetView)
+                    bottomSheetDialog.show()
 
-        //End date selection
-        val end_date = bottomSheetView.findViewById<ImageButton>(R.id.end_date)
-        end_date.setOnClickListener {
-            showDatePickerDialog(false)
-        }
+                    //Date selection
+                    val start_date = bottomSheetView.findViewById<ImageButton>(R.id.start_date)
+                    start_date.setOnClickListener {
+                        showDatePickerDialog(true)
+                    }
 
-        // Start time selection
-        val start_time = bottomSheetView.findViewById<ImageButton>(R.id.start_time)
-        start_time.setOnClickListener {
-            showTimePickerDialog(true)
-        }
+                    //End date selection
+                    val end_date = bottomSheetView.findViewById<ImageButton>(R.id.end_date)
+                    end_date.setOnClickListener {
+                        showDatePickerDialog(false)
+                    }
 
-        // End time selection
-        val end_time = bottomSheetView.findViewById<ImageButton>(R.id.end_time)
-        end_time.setOnClickListener {
-            showTimePickerDialog(false)
-        }
+                    // Start time selection
+                    val start_time = bottomSheetView.findViewById<ImageButton>(R.id.start_time)
+                    start_time.setOnClickListener {
+                        showTimePickerDialog(true)
+                    }
 
-        // Edit button
-        val editButton = bottomSheetView.findViewById<Button>(R.id.edit_btn)
-        editButton.visibility = View.GONE
+                    // End time selection
+                    val end_time = bottomSheetView.findViewById<ImageButton>(R.id.end_time)
+                    end_time.setOnClickListener {
+                        showTimePickerDialog(false)
+                    }
 
-        val scheduleButton = bottomSheetView.findViewById<Button>(R.id.schedule_btn)
-        scheduleButton.setOnClickListener {
+                    // Edit button
+                    val editButton = bottomSheetView.findViewById<Button>(R.id.edit_btn)
+                    editButton.visibility = View.GONE
 
-        }
+                    showCreateScheduleDialog()
+
+
+                } else {
+                    // No schedule exists, do not show the bottom sheet
+                    // You can show a toast or handle this situation in any other way you prefer
+                    Toast.makeText(this@Home, "No schedule available", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle onCancelled event, if needed
+                Toast.makeText(this@Home, "Database reference failed", Toast.LENGTH_LONG).show()
+            }
+        })
+
+
+
     }
 
 
@@ -282,29 +302,7 @@ class Home : AppCompatActivity() {
         timePicker.show()
     }
 
-
-    private fun scheduleAction() {
-        // Check if an existing schedule is present
-        val database = FirebaseDatabase.getInstance().getReference("HOUSES")
-        val adaptor1Ref = database.child("HOUSES_1").child("ADAPTORS").child("ADAPTOR_1").child("SCHEDULE")
-
-        adaptor1Ref.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    // Existing schedule found user can edit
-                    showEditScheduleDialog()
-                } else {
-                    // No existing schedule, assign values and set SCHEDULE_STATUS
-                    showCreateScheduleDialog()
-                }
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Handle onCancelled event, if needed
-            }
-        })
-    }
-
+  //editing if schedule available
     private fun showEditScheduleDialog() {
         val database = FirebaseDatabase.getInstance().getReference("HOUSES")
         val adaptor1Ref = database.child("HOUSES_1").child("ADAPTORS").child("ADAPTOR_1").child("SCHEDULE")
@@ -412,7 +410,7 @@ class Home : AppCompatActivity() {
         dialog.setContentView(bottomSheetView)
         dialog.show()
     }
-
+    //create if schedule available
     private fun showCreateScheduleDialog() {
         val database = FirebaseDatabase.getInstance().getReference("HOUSES")
         val adaptor1Ref = database.child("HOUSES_1").child("ADAPTORS").child("ADAPTOR_1").child("SCHEDULE")
@@ -471,13 +469,9 @@ class Home : AppCompatActivity() {
                     Toast.makeText(this@Home, "Failed to create schedule", Toast.LENGTH_SHORT).show()
                 }
         }
-
-        editButton.visibility = View.GONE // Hide the edit button since it's a new schedule
-
         // Set the custom view for the dialog and show it
         dialog.setContentView(bottomSheetView)
         dialog.show()
-        dialog.dismiss()
     }
 
 }
