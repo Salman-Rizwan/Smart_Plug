@@ -22,9 +22,8 @@ Colombo-7</p>
   <li><a href="#abstract">Abstract</a></li>
   <li><a href="#introduction">Introduction</a></li>
   <li><a href="#methodology">Methodology</a></li>
-  <li><a href="#discussion">Discussion</a></li>
-  <li><a href="#future-implementation">Future Implementation</a></li>
-  <li><a href="#gantt-chart">Gantt Chart</a></li>
+  <li><a href="#features">Features</a></li>
+  <li><a href="#screen_design">Screen Designs</a></li>
   <li><a href="#references">References</a></li>
 </ol>
 
@@ -52,7 +51,7 @@ With its innovative design and multifaceted functionality, the Smart Power Adapt
   <li>Launch the product and continue to gather errors and bugs to inform future product improvements and updates.</li>
 </ul>
 
-<h2 id="Features">5. Features</h2>
+<h2 id="features">5. Features</h2>
 <ol>
   <li>Can control connected devices using a mobile phone from any location.</li>
   <li>Monitor power consumption details of the connected device.</li>
